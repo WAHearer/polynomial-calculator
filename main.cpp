@@ -243,34 +243,45 @@ bool check(string s){
 		return false;
 	if(s[0]=='.'||s[0]=='*'||s[0]=='\''||s[0]=='^'||s[0]==')')
 		return false;
+	bool pointAppeared=false;
 	for(int i=1;i<len;i++){
 		if(isdigit(s[i])){
 			if(s[i-1]==')'||s[i-1]=='x'||s[i-1]=='\''||s[i+1]=='^')
 				return false;
 		}
 		if(s[i]=='.'){
+			if(pointAppeared)
+				return false;
+			pointAppeared=true;
 			if(!isdigit(s[i-1])||!isdigit(s[i+1]))
 				return false;
 		}
 		if(s[i]=='x'){
+			pointAppeared=false;
 			if(s[i-1]=='.'||s[i-1]=='x'||s[i-1]=='\''||s[i-1]=='^'||s[i+1]=='.'||s[i+1]=='x')
 				return false;
 		}
 		if(s[i]=='+'||s[i]=='-'){
+			pointAppeared=false;
 			if(s[i-1]=='.'||s[i-1]=='+'||s[i-1]=='-'||s[i-1]=='*'||s[i+1]=='.'||s[i+1]=='+'||s[i+1]=='-'||s[i+1]=='\''||s[i+1]=='^'||s[i+1]==')')
 				return false;
 		}
 		if(s[i]=='*'){
+			pointAppeared=false;
 			if(s[i-1]=='.'||s[i-1]=='+'||s[i-1]=='-'||s[i-1]=='*'||s[i-1]=='^'||s[i-1]=='('||s[i+1]=='.'||s[i+1]=='+'||s[i+1]=='-'||s[i+1]=='\''||s[i+1]=='^'||s[i+1]==')')
 				return false;
 		}
 		if(s[i]=='\''){
+			pointAppeared=false;
 			if(!isdigit(s[i-1])&&s[i-1]!='x'&&s[i-1]!=')')
 				return false;
 		}
 		if(s[i]=='^'){
 			if(s[i-1]!='x'||(!isdigit(s[i+1])&&s[i+1]!='-'))
 				return false;
+		}
+		if(s[i]=='('||s[i]==')'){
+			pointAppeared=false;
 		}
 	}
 	return true;
