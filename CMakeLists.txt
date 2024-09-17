@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.29)
+project(polynomial_calculator)
+set(CMAKE_CXX_STANDARD 11)
+link_libraries(ws2_32)
+add_executable(polynomial_calculator main.cpp)
