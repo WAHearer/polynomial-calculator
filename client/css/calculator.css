@@ -1,0 +1,35 @@
+.title1{
+	text-align:center;
+	font-size:100px;
+}
+.title2{
+	text-align:center;
+	font-size:30px;
+}
+.container{
+	text-align:center;
+}
+.input{
+	padding:20px 300px;
+	font-size:50px;
+	border-radius:10px;
+	text-align-last:center;
+}
+.result{
+	font-size:50px;
+}
+.button{
+    width:300px;
+    height:100px;
+	font-size:50px;
+    background-color:#e0f7fa;
+	border:2px solid transparent;
+    justify-content:center;
+    cursor:pointer;
+    outline:none;
+    transition:background-color 0.3s,color 0.3s;
+}
+.button:hover{
+    background-color:#81d4fa;
+    color:#000;
+}
