@@ -1,1 +1,1 @@
-# polynomial-calculator
+这是一个网页版多项式计算器，是数据结构课程的Lab1。网页后端位于main.cpp，前端位于client/calculator.html，使用时须自行在根目录添加httplib.h库
