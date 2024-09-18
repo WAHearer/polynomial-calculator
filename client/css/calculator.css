@@ -9,6 +9,12 @@
 .container{
 	text-align:center;
 }
+.select{
+	padding:10px 10px;
+	font-size:15px;
+	border-radius:10px;
+	text-align-last:center;
+}
 .input{
 	padding:20px 300px;
 	font-size:50px;
