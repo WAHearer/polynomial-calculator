@@ -138,6 +138,22 @@ class List{
 			s=oss.str();
 			return s;
 		}
+		string printAsNumbers(){
+			ostringstream oss;
+			string s;
+			if(!this->next){
+				return "0";
+			}
+			List *p=this->next;
+			int cnt=0;
+			while(p){
+				cnt++;
+				oss<<p->a<<" "<<p->n<<" ";
+				p=p->next;
+			}
+			s=to_string(cnt)+" "+oss.str();
+			return s;
+		}
 		List operator+(const List &y)const{
 			List *head=(List*)malloc(sizeof(List));
 			head->next=nullptr;
@@ -360,7 +376,6 @@ List cal(){
 					num2=st.top().num;
 					st.pop();
 				}
-				cout<<num2.print()<<" "<<temp.op<<" "<<num1.print()<<endl;
 				Op res;
 				res.flag=true;
 				res.num=List();
@@ -395,7 +410,14 @@ int main(){
 		{ "Content-Type","text/plain"}
 	});
 	server.Post("/calc",[](const httplib::Request &req,httplib::Response &res){
+		bool mode;
 		string s=req.body;
+		if(s[0]=='?'){
+			mode=true;
+			s.erase(0,1);
+		}
+		else
+			mode=false;
 		if(!check(s))
 			res.set_content("invalid","text/plain");
 		else{
@@ -414,8 +436,15 @@ int main(){
 			}
 			make(s);
 			List result=cal();
-			cout<<result.print()<<endl;
-			res.set_content(result.print(),"text/plain");
+			if(!mode){
+				cout<<result.print()<<endl;
+				res.set_content(result.print(),"text/plain");
+			}
+			else{
+				cout<<result.printAsNumbers()<<endl;
+				res.set_content(result.printAsNumbers(),"text/plain");
+			}
+
 		}
 	});
 	server.listen("localhost",8080);
