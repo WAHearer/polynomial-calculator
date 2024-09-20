@@ -24,7 +24,7 @@ class List{
 					p->next=node;
 					return;
 				}
-				else if(node->n==p->next->n){
+				if(node->n==p->next->n){
 					p->next->a+=node->a;
 					if(p->next->a==0)
 						p->next=p->next->next;
@@ -106,7 +106,7 @@ class List{
 			head->insert(p);
 			this->next=head->next;
 		}
-		 string print(){
+		string print(){
 			ostringstream oss;
 			string s;
 			if(!this->next){
@@ -403,11 +403,11 @@ int main(){
 	priority['+']=priority['-']=1;
 	httplib::Server server;
 	server.set_default_headers({
-		{ "Access-Control-Allow-Origin" ,"*" },
-		{ "Access-Control-Allow-Methods","POST, GET, PUT, OPTIONS, DELETE"},
-		{ "Access-Control-Max-Age","3600"},
-		{ "Access-Control-Allow-Headers","*"},
-		{ "Content-Type","text/plain"}
+		{"Access-Control-Allow-Origin","*"},
+		{"Access-Control-Allow-Methods","POST,GET,PUT,OPTIONS,DELETE"},
+		{"Access-Control-Max-Age","3600"},
+		{"Access-Control-Allow-Headers","*"},
+		{"Content-Type","text/plain"}
 	});
 	server.Post("/calc",[](const httplib::Request &req,httplib::Response &res){
 		bool mode;
@@ -444,7 +444,6 @@ int main(){
 				cout<<result.printAsNumbers()<<endl;
 				res.set_content(result.printAsNumbers(),"text/plain");
 			}
-
 		}
 	});
 	server.listen("localhost",8080);
